@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://helixoriginator.github.io/dharmic-realism-protocol-sanatana-civilizational-os/sitemap.xml
