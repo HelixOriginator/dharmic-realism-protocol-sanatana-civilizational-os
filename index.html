@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharmic Realism Protocol | Sanatana Civilizational OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-void: #050508;
+    --bg-deep: #080b12;
+    --bg-card: #0d1018;
+    --bg-raised: #121620;
+    --gold: #c9a227;
+    --gold-bright: #f0c040;
+    --gold-dim: #7a6218;
+    --saffron: #e8620a;
+    --saffron-dim: #7a340a;
+    --crimson: #8b1a1a;
+    --jade: #1a6b4a;
+    --jade-bright: #2aaa74;
+    --sky: #1a4a7a;
+    --sky-bright: #4a9eda;
+    --text-primary: #e8e0cc;
+    --text-secondary: #a89870;
+    --text-muted: #5a5040;
+    --border-gold: rgba(201,162,39,0.25);
+    --border-subtle: rgba(255,255,255,0.06);
+    --glow-gold: rgba(201,162,39,0.15);
+    --glow-saffron: rgba(232,98,10,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-void);
+    color: var(--text-primary);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ─── MANDALA HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,162,39,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(232,98,10,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(26,74,122,0.06) 0%, transparent 50%);
+  }
+
+  .mandala-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--border-gold);
+    animation: rotateSlow linear infinite;
+    opacity: 0.3;
+  }
+  .mandala-ring:nth-child(1) { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 80s; }
+  .mandala-ring:nth-child(2) { width: 450px; height: 450px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 60s; animation-direction: reverse; border-style: dashed; }
+  .mandala-ring:nth-child(3) { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 40s; }
+  .mandala-ring:nth-child(4) { width: 150px; height: 150px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 25s; animation-direction: reverse; }
+
+  @keyframes rotateSlow {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .om-symbol {
+    font-size: 3.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(201,162,39,0.6);
+    margin-bottom: 1.5rem;
+    display: block;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 30px rgba(201,162,39,0.5); }
+    50% { text-shadow: 0 0 60px rgba(201,162,39,0.9), 0 0 100px rgba(232,98,10,0.3); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 40%, var(--saffron) 70%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-tagline {
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+    border-left: 2px solid var(--gold-dim);
+    padding-left: 1.2rem;
+    text-align: left;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  .meta-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border: 1px solid var(--border-subtle);
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+  }
+
+  .author-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.15em;
+    margin-top: 3rem;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,5,8,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 0 2rem;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0.8rem 0;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.3rem 0.8rem;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  nav a:hover {
+    color: var(--gold);
+    border-color: var(--border-gold);
+    background: var(--glow-gold);
+  }
+
+  /* ─── LAYOUT ─── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  section + section {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* ─── PART HEADERS ─── */
+  .part-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .part-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--gold-dim);
+    line-height: 1;
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+
+  .part-title-block h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .part-title-block .part-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--saffron);
+    text-transform: uppercase;
+  }
+
+  /* ─── CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .card:hover {
+    border-color: var(--border-gold);
+    transform: translateY(-2px);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  .card.saffron::before { background: linear-gradient(to bottom, var(--saffron), transparent); }
+  .card.jade::before { background: linear-gradient(to bottom, var(--jade-bright), transparent); }
+  .card.sky::before { background: linear-gradient(to bottom, var(--sky-bright), transparent); }
+  .card.crimson::before { background: linear-gradient(to bottom, #c0392b, transparent); }
+
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .card.saffron h3 { color: var(--saffron); }
+  .card.jade h3 { color: var(--jade-bright); }
+  .card.sky h3 { color: var(--sky-bright); }
+  .card.crimson h3 { color: #e74c3c; }
+
+  .card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── THESIS BLOCK ─── */
+  .thesis-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 4px;
+    padding: 3rem;
+    position: relative;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .thesis-block::after {
+    content: 'ॐ';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .thesis-block p {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--text-primary);
+    font-style: italic;
+  }
+
+  .thesis-block strong {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ─── LAYER SYSTEM ─── */
+  .layer-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .layer {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.5rem 2rem;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .layer:hover {
+    border-color: var(--border-gold);
+    background: var(--bg-raised);
+  }
+
+  .layer-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--gold-dim);
+    text-align: center;
+  }
+
+  .layer-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .layer-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .layer-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    border: 1px solid var(--saffron-dim);
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* ─── ASYMMETRY TABLE ─── */
+  .asymmetry-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .asymmetry-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .asymmetry-table th:first-child { color: var(--jade-bright); }
+  .asymmetry-table th:nth-child(2) { color: var(--sky-bright); }
+  .asymmetry-table th:last-child { color: var(--saffron); }
+
+  .asymmetry-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .asymmetry-table tr:hover td {
+    background: var(--bg-raised);
+    color: var(--text-primary);
+  }
+
+  .asymmetry-table td:first-child {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), var(--saffron), var(--jade-bright), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 0.4rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg-void);
+    box-shadow: 0 0 10px rgba(201,162,39,0.4);
+  }
+
+  .timeline-item.saffron::before { background: var(--saffron); box-shadow: 0 0 10px rgba(232,98,10,0.4); }
+  .timeline-item.jade::before { background: var(--jade-bright); box-shadow: 0 0 10px rgba(42,170,116,0.4); }
+
+  .timeline-phase {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-item.saffron .timeline-phase { color: var(--saffron); }
+  .timeline-item.jade .timeline-phase { color: var(--jade-bright); }
+
+  .timeline-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-body {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── METRIC CARDS ─── */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .metric-value {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── PRINCIPLE BLOCK ─── */
+  .principle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .principle {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .principle-sanskrit {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(201,162,39,0.3);
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  .principle h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+  }
+
+  .principle p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── CHECKLIST ─── */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+  }
+
+  .checklist li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .checklist li::before {
+    content: '◈';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    font-size: 0.8rem;
+  }
+
+  .checklist.saffron li::before { color: var(--saffron); }
+  .checklist.jade li::before { color: var(--jade-bright); }
+
+  /* ─── QUOTE BLOCK ─── */
+  .quote-block {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    background: rgba(201,162,39,0.04);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .quote-block p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-source {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-dim);
+  }
+
+  /* ─── DASHBOARD MOCK ─── */
+  .dashboard-mockup {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .dashboard-header {
+    background: var(--bg-raised);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .dashboard-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .dashboard-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    margin-left: auto;
+  }
+
+  .dashboard-body {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .chi-metric {
+    background: var(--bg-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.2rem;
+  }
+
+  .chi-bar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .chi-bar-track {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .chi-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+
+  /* ─── GAME THEORY ─── */
+  .gt-matrix {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 2px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .gt-cell {
+    background: var(--bg-card);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .gt-header {
+    background: var(--bg-raised);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-align: center;
+  }
+
+  .gt-row-label {
+    background: var(--bg-raised);
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--saffron);
+    writing-mode: horizontal-tb;
+  }
+
+  .gt-outcome {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .gt-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .outcome-bad { color: #e74c3c; }
+  .outcome-ok { color: #f39c12; }
+  .outcome-good { color: var(--jade-bright); }
+  .outcome-best { color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border-gold);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-inner { max-width: 700px; margin: 0 auto; }
+
+  .footer-om {
+    font-size: 2.5rem;
+    color: var(--gold-dim);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  .footer-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-author {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    opacity: 0.8;
+  }
+
+  .footer-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── DIVIDERS ─── */
+  .ornament {
+    text-align: center;
+    color: var(--gold-dim);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    margin: 2rem 0;
+    opacity: 0.5;
+  }
+
+  /* ─── HIGHLIGHTED TEXT ─── */
+  .highlight { color: var(--gold); font-weight: 600; }
+  .highlight-s { color: var(--saffron); }
+  .highlight-j { color: var(--jade-bright); }
+
+  /* ─── PROSE ─── */
+  .prose {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 800px;
+  }
+
+  .prose p + p { margin-top: 1rem; }
+
+  /* ─── SECTION LABELS ─── */
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--saffron);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* ─── ANIMATE IN ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── PILLARS ─── */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .pillar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .pillar:hover { border-color: var(--border-gold); }
+
+  .pillar-glyph {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .pillar h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .pillar p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Two col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+    .layer { grid-template-columns: 40px 1fr; }
+    .layer-tag { display: none; }
+    .asymmetry-table { font-size: 0.82rem; }
+    .asymmetry-table th, .asymmetry-table td { padding: 0.7rem 0.8rem; }
+    .part-number { font-size: 2.5rem; }
+  }
+
+  /* ─── ECOSYSTEM LINK BUTTONS ─── */
+  .ecosystem-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .eco-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.25s, background 0.3s;
+    cursor: pointer;
+  }
+
+  .eco-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--glow-gold), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .eco-btn:hover {
+    border-color: var(--border-gold);
+    transform: translateY(-3px);
+    background: var(--bg-raised);
+  }
+
+  .eco-btn:hover::before { opacity: 1; }
+
+  .eco-btn.accent-saffron { border-left: 3px solid var(--saffron-dim); }
+  .eco-btn.accent-saffron:hover { border-color: var(--saffron); }
+  .eco-btn.accent-saffron::before { background: linear-gradient(135deg, var(--glow-saffron), transparent 60%); }
+
+  .eco-btn.accent-jade { border-left: 3px solid var(--jade); }
+  .eco-btn.accent-jade:hover { border-color: var(--jade-bright); }
+  .eco-btn.accent-jade::before { background: linear-gradient(135deg, rgba(42,170,116,0.1), transparent 60%); }
+
+  .eco-btn.accent-sky { border-left: 3px solid var(--sky); }
+  .eco-btn.accent-sky:hover { border-color: var(--sky-bright); }
+  .eco-btn.accent-sky::before { background: linear-gradient(135deg, rgba(74,158,218,0.1), transparent 60%); }
+
+  .eco-btn.accent-gold { border-left: 3px solid var(--gold-dim); }
+  .eco-btn.accent-gold:hover { border-color: var(--gold-bright); }
+
+  .eco-btn.accent-crimson { border-left: 3px solid var(--crimson); }
+  .eco-btn.accent-crimson:hover { border-color: #e74c3c; }
+  .eco-btn.accent-crimson::before { background: linear-gradient(135deg, rgba(139,26,26,0.15), transparent 60%); }
+
+  .eco-btn.accent-violet { border-left: 3px solid #4a2a7a; }
+  .eco-btn.accent-violet:hover { border-color: #9b59b6; }
+  .eco-btn.accent-violet::before { background: linear-gradient(135deg, rgba(155,89,182,0.1), transparent 60%); }
+
+  .eco-btn.accent-teal { border-left: 3px solid #0d4a4a; }
+  .eco-btn.accent-teal:hover { border-color: #1abc9c; }
+  .eco-btn.accent-teal::before { background: linear-gradient(135deg, rgba(26,188,156,0.1), transparent 60%); }
+
+  .eco-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eco-text {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    min-width: 0;
+  }
+
+  .eco-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .eco-btn.accent-saffron .eco-label { color: var(--saffron); }
+  .eco-btn.accent-jade .eco-label { color: var(--jade-bright); }
+  .eco-btn.accent-sky .eco-label { color: var(--sky-bright); }
+  .eco-btn.accent-gold .eco-label { color: var(--gold); }
+  .eco-btn.accent-crimson .eco-label { color: #e74c3c; }
+  .eco-btn.accent-violet .eco-label { color: #9b59b6; }
+  .eco-btn.accent-teal .eco-label { color: #1abc9c; }
+
+  .eco-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .eco-arrow {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.25s, color 0.25s;
+  }
+
+  .eco-btn:hover .eco-arrow {
+    transform: translate(3px, -3px);
+    color: var(--gold);
+  }
+
+  .eco-btn.accent-saffron:hover .eco-arrow { color: var(--saffron); }
+  .eco-btn.accent-jade:hover .eco-arrow { color: var(--jade-bright); }
+  .eco-btn.accent-sky:hover .eco-arrow { color: var(--sky-bright); }
+  .eco-btn.accent-crimson:hover .eco-arrow { color: #e74c3c; }
+  .eco-btn.accent-violet:hover .eco-arrow { color: #9b59b6; }
+  .eco-btn.accent-teal:hover .eco-arrow { color: #1abc9c; }
+
+  /* Hero compact link row */
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1.8rem;
+  }
+
+  .hero-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border-gold);
+    border-radius: 20px;
+    background: rgba(201,162,39,0.06);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+
+  .hero-link-pill:hover {
+    background: rgba(201,162,39,0.15);
+    color: var(--gold-bright);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="mandala-ring"></div>
+  <div class="mandala-ring"></div>
+  <div class="mandala-ring"></div>
+  <div class="mandala-ring"></div>
+
+  <div class="hero-content">
+    <span class="om-symbol">ॐ</span>
+    <p class="hero-eyebrow">A Ready Reckoner for Civilizational Renewal</p>
+    <h1 class="hero-title">Dharmic Realism Protocol</h1>
+    <h2 class="hero-subtitle">Sanatana Civilizational Operating System for 21st Century Bharat</h2>
+    <p class="hero-tagline">
+      A synthesis of Demographic-Economic Integrity, Policy Intelligence, and the Sanatana Knowledge Ecosystem — 
+      forging an adaptive civilizational framework grounded in Ṛta, Dharma, and Satya.
+    </p>
+    <div class="hero-meta">
+      <span class="meta-badge">5 Core Parts</span>
+      <span class="meta-badge">4 Integrated Layers</span>
+      <span class="meta-badge">3 Timeframe Roadmap</span>
+      <span class="meta-badge">Dharmic Realism Framework</span>
+    </div>
+    <p class="author-badge">Created by Kallol Chakrabarti · Global Independent Researcher</p>
+
+    <div class="hero-links">
+      <a class="hero-link-pill" href="https://helixoriginator.github.io/sanatana-ecosystem/" target="_blank" rel="noopener">⬡ Sanatana Ecosystem</a>
+      <a class="hero-link-pill" href="https://helixoriginator.github.io/Sanatana-Knowledge-Bank-/" target="_blank" rel="noopener">📚 Knowledge Bank</a>
+      <a class="hero-link-pill" href="https://helixoriginator.github.io/sanatana-civilization-stack/" target="_blank" rel="noopener">🏛 Civilization Stack</a>
+      <a class="hero-link-pill" href="https://helixoriginator.github.io/Sanatana-Dharmic-Policy-Intelligence-Platform/" target="_blank" rel="noopener">⚙ Policy Intelligence</a>
+      <a class="hero-link-pill" href="https://helixoriginator.github.io/demographic-economic-integrity-protocol/" target="_blank" rel="noopener">📊 DEIP</a>
+      <a class="hero-link-pill" href="https://helixoriginator.github.io/asymmetrical-democratic-equilibrium/" target="_blank" rel="noopener">⚖ Democratic Equilibrium</a>
+      <a class="hero-link-pill" href="https://sanatana-intelligence.netlify.app/" target="_blank" rel="noopener">🤖 Sanatana Intelligence</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#thesis">Core Thesis</a>
+    <a href="#part1">Diagnosis</a>
+    <a href="#part2">Foundations</a>
+    <a href="#part3">DRP Protocol</a>
+    <a href="#part4">Roadmap</a>
+    <a href="#part5">Game Theory</a>
+    <a href="#chi">Health Index</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#sources">Ecosystem</a>
+  </div>
+</nav>
+
+<!-- ─── CORE THESIS ─── -->
+<section id="thesis">
+  <div class="container">
+    <span class="section-eyebrow">Central Argument</span>
+    <div class="part-header">
+      <div class="part-number">∞</div>
+      <div class="part-title-block">
+        <h2>The Core Thesis</h2>
+        <p class="part-subtitle">Genius Angle · Civilizational Operating System</p>
+      </div>
+    </div>
+
+    <div class="thesis-block fade-in">
+      <p>
+        <strong>Sanatan Dharma is not merely philosophy</strong> — it is a living civilizational operating system 
+        capable of integrating ancient <strong>Ṛta</strong> (cosmic order) with modern data science, AI, blockchain, 
+        and game theory. The asymmetry in <em>shatrubodh</em> (doctrinal threat-awareness) and the demographic-strategic 
+        patience practiced by certain ideologies can be countered — not by importing their methods — but by 
+        <strong>upgrading Sanatana with Dharmic Realism</strong>: truth-seeking + sovereign boundaries + adaptive 
+        strength + civilizational self-renewal.
+      </p>
+      <br>
+      <p>
+        This protocol integrates DEIP's anti-distortion mechanisms, H-COS's computational Dharma engine, and the 
+        Sanatana Knowledge Ecosystem's defense frameworks into a single, executable architecture. It addresses 
+        public memory fade, strategic voting gaps, and the historical lesson that <strong>magnanimity without 
+        reciprocity leads to civilizational elimination</strong>.
+      </p>
+    </div>
+
+    <div class="pillar-grid fade-in">
+      <div class="pillar">
+        <span class="pillar-glyph">⚖️</span>
+        <h3>Ṛta as Order</h3>
+        <p>Cosmic harmony with intelligent boundaries — not unlimited openness without discernment</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-glyph">🔥</span>
+        <h3>Kshatriya Realism</h3>
+        <p>Mahabharata's strategic wisdom, Arthashastra's mandala theory — not passive pacifism</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-glyph">🧠</span>
+        <h3>Shatrubodh</h3>
+        <p>Civilizational threat-awareness grounded in historical evidence and game theory</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-glyph">🌐</span>
+        <h3>Adaptive Synthesis</h3>
+        <p>Ancient wisdom integrated with AI, data systems, and modern governance frameworks</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-glyph">🛡️</span>
+        <h3>Shakti Sovereignty</h3>
+        <p>Feminine protective energy operationalized as policy — not mere symbol</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-glyph">📊</span>
+        <h3>Data-Backed Dharma</h3>
+        <p>Census trends, electoral analytics, economic integrity — evidence not emotion</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PART 1: DIAGNOSIS ─── -->
+<section id="part1">
+  <div class="container">
+    <span class="section-eyebrow">Part One</span>
+    <div class="part-header">
+      <div class="part-number">I</div>
+      <div class="part-title-block">
+        <h2>The Civilizational Friction Audit</h2>
+        <p class="part-subtitle">Diagnosis · Historical Patterns · Modern Asymmetries</p>
+      </div>
+    </div>
+
+    <div class="prose fade-in">
+      <p>
+        Every civilization carries within it the memory of its wounds — and the tragedy of Dharmic civilization is 
+        not its defeats, but its recurring amnesia. Public memory is engineered to be short. The violence of political 
+        cycles, the slow erosion of demographic data, and the failure of historiography to confront primary sources 
+        have conspired to leave the civilization strategically disarmed in peacetime.
+      </p>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <div class="card-grid fade-in">
+      <div class="card">
+        <span class="card-icon">📜</span>
+        <h3>Historical Pattern Recognition</h3>
+        <p>Prithviraj Chauhan's repeated pardons of Ghori — chivalry without reciprocity. Hindu kingdoms' internecine wars while invaders consolidated. Temple economies destroyed, populations enslaved or converted. Kashmir, Bengal, Punjab demographic shifts documented in Al-Biruni, Ferishta, Mughal records.</p>
+      </div>
+      <div class="card saffron">
+        <span class="card-icon">📊</span>
+        <h3>Modern Demographic Asymmetry</h3>
+        <p>Differential Total Fertility Rates across religious communities. Illegal immigration clusters in Assam and Bengal. Urban vendor encroachment as soft demographic leverage. Conversion funding from foreign sources. State-level census data showing accelerating shifts in border districts.</p>
+      </div>
+      <div class="card jade">
+        <span class="card-icon">🗳️</span>
+        <h3>Electoral Strategic Gap</h3>
+        <p>80–95% vote consolidation by certain blocs based on "winnability against Hindu party" calculus. Hindu fragmentation across caste, region, class, sub-identity. Strategic voting asymmetry observable across 15+ major state elections. Democracy rewards emotional identity over governance memory.</p>
+      </div>
+      <div class="card sky">
+        <span class="card-icon">🔄</span>
+        <h3>Memory Cycle Failure</h3>
+        <p>TMC's Sandeshkhali violence fading within 18 months. SP's "jungle raj" in UP forgiven by next cycle. Targeted attacks on Hindus in Bengal become electoral footnotes. Short democratic cycles reward amnesia — institutional memory must be externalized into data systems.</p>
+      </div>
+      <div class="card crimson">
+        <span class="card-icon">⚠️</span>
+        <h3>Institutional Capture Risk</h3>
+        <p>Waqf Board land acquisitions without equivalence for Hindu institutions. Differential treatment in media narratives. Education system's systematic omission of Hindu resilience history. Judicial asymmetry in communal cases. Tax leakage through informal economy distortions.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧬</span>
+        <h3>Shatrubodh Gap Analysis</h3>
+        <p>Islamic education from madrasa, home, mosque instills civilizational "us vs kafir" frame from early age — rooted in core doctrinal texts with abrogation theology. Hindu families emphasize sarva dharma sambhava without corresponding realism about asymmetric threats. Structural, not individual, gap.</p>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <h3 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:1.5rem;font-size:1.2rem;letter-spacing:0.05em;">Civilizational Asymmetry Matrix</h3>
+
+    <div style="overflow-x:auto;">
+    <table class="asymmetry-table fade-in">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Sanatana Current State</th>
+          <th>Asymmetric Challenger</th>
+          <th>Dharmic Realism Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Education &amp; Identity</td>
+          <td>Pluralistic, tolerant framing; minimal civilizational history</td>
+          <td>Doctrinal certainty from birth; weekly reinforcement structures</td>
+          <td>Honest historiography + Sunday Dharma schools + digital curricula</td>
+        </tr>
+        <tr>
+          <td>Demographic Strategy</td>
+          <td>No coordinated awareness; fertility below replacement in some urban clusters</td>
+          <td>Higher TFR + strategic migration + conversion pipelines</td>
+          <td>Data transparency + UCC + population policy + economic incentives</td>
+        </tr>
+        <tr>
+          <td>Electoral Behaviour</td>
+          <td>Fragmented by caste, sub-region, class</td>
+          <td>High consolidation on civilizational interest calculations</td>
+          <td>Issue-based Hindu consolidation on UCC, temples, borders — not hate</td>
+        </tr>
+        <tr>
+          <td>Economic Power</td>
+          <td>Diffuse; informal sector unorganized; no parallel systems</td>
+          <td>Hawala networks, Waqf assets, foreign-funded NGOs</td>
+          <td>Hindu entrepreneurship clusters + temple economic revival + legal networks</td>
+        </tr>
+        <tr>
+          <td>Narrative Control</td>
+          <td>Reactive; English-language discourse often hostile</td>
+          <td>Global Ummah solidarity + OIC influence + diaspora media</td>
+          <td>AI Dharma Sahayak + civilizational media + international scholars</td>
+        </tr>
+        <tr>
+          <td>Legal / Judicial</td>
+          <td>Article 30 asymmetry; no equivalent minority-school control</td>
+          <td>Waqf Act protections; differential blasphemy enforcement</td>
+          <td>Constitutional equality amendments + legal defense networks</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PART 2: FOUNDATIONS ─── -->
+<section id="part2">
+  <div class="container">
+    <span class="section-eyebrow">Part Two</span>
+    <div class="part-header">
+      <div class="part-number">II</div>
+      <div class="part-title-block">
+        <h2>Sanatana as Adaptive OS</h2>
+        <p class="part-subtitle">Foundations · Core Principles · Ṛta · Shakti Sovereignty</p>
+      </div>
+    </div>
+
+    <div class="prose fade-in">
+      <p>
+        The genius of Sanatana Dharma is precisely its <em>adaptive architecture</em> — it has never been a fixed 
+        creed but a living ecosystem of frameworks. Vedic ritual, Bhakti devotionalism, Vedanta metaphysics, 
+        Shaiva philosophy, Shakta energy systems, and Kshatriya warrior ethics coexisted as complementary modules 
+        within one civilizational OS. This is not weakness — it is distributed resilience.
+      </p>
+    </div>
+
+    <div class="principle-list fade-in">
+      <div class="principle">
+        <div class="principle-sanskrit">ऋ</div>
+        <div>
+          <h4>Ṛta — Cosmic Order with Sovereign Boundaries</h4>
+          <p>Not unlimited Vasudhaiva Kutumbakam without discernment. The Vedic concept of Ṛta encompasses both harmony <em>and</em> the boundaries that preserve it. A family is a universal family — but a family that cannot defend its hearth is not a family at all.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-sanskrit">ध</div>
+        <div>
+          <h4>Dharma — Contextual Righteous Action</h4>
+          <p>Svadharma over imposed sameness. Guna-karma varna on merit, not birth rigidity. The Bhagavad Gita's central teaching is precisely that inaction in the face of adharma is itself adharmic. Krishna did not counsel Arjuna to surrender.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-sanskrit">श</div>
+        <div>
+          <h4>Shakti — Sovereign Feminine Protective Energy</h4>
+          <p>Durga, Kali, Chamunda — not decorative mythology but encoded civilizational memory of feminine protective force. Operationalized: legal protection of Hindu women, counter-grooming policy, temple governance giving women authority.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-sanskrit">क</div>
+        <div>
+          <h4>Kshatriya Realism — Strategic Action Ethics</h4>
+          <p>Arthashastra's mandala theory, the saptanga state model, sama-dana-danda-bheda. Vijayanagara, Marathas, Sikhs, Rajputs — all activated Kshatriya dharma when required. Not aggression but readiness. The sword sheathed is still a sword.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-sanskrit">स</div>
+        <div>
+          <h4>Sarva Dharma — But With Reciprocity Requirement</h4>
+          <p>Sarva Dharma Sambhava functions as civilizational wisdom <em>only</em> when it is reciprocal. A civilization that extends tolerance to those who reject tolerance is not practicing dharma — it is practicing self-dissolution. Tolerance without discernment is not virtue; it is vacancy.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <div class="quote-block fade-in">
+      <p>"The Mahabharata does not counsel passivity. Krishna's Vishvarupa revealed not just cosmic love but cosmic power. Ahimsa is a weapon — but it must be wielded by those capable of himsa who choose not to use it. Powerless ahimsa is merely weakness wearing the mask of virtue."</p>
+      <span class="quote-source">— Synthesis from Bhagavad Gita 3.35, Arthashastra 1.2, Dharmic Realism Framework</span>
+    </div>
+
+    <div class="card-grid fade-in">
+      <div class="card">
+        <span class="card-icon">🏛️</span>
+        <h3>Critique of One-Sided Secularism</h3>
+        <p>Secularism as practiced in India applies rigorously to Hindu institutions while exempting others. Minority institutions under Article 30, Waqf autonomy, differential media standards — these are not pluralism but asymmetric legal architecture that requires constitutional correction.</p>
+      </div>
+      <div class="card saffron">
+        <span class="card-icon">📚</span>
+        <h3>Honest Historiography Imperative</h3>
+        <p>Al-Biruni, Ferishta, Barani, Mughal farmans are primary sources documenting temple destructions, jizya, devshirme-like practices, forced conversions. Somnath, Kashi, Mathura — these are historically verifiable. Not emotion: evidence. Sita Ram Goel, Koenraad Elst, Richard Eaton's own maps confirm.</p>
+      </div>
+      <div class="card jade">
+        <span class="card-icon">💡</span>
+        <h3>Civilizational Pride Curriculum</h3>
+        <p>Ancient mathematics (Aryabhata, Brahmagupta), philosophy (Nyaya, Vaisheshika, Advaita), architecture (temple engineering, city planning), medicine (Ayurveda, Sushruta), astronomy, metallurgy — the Delhi Iron Pillar does not rust after 1600 years. This is not mythology; it is engineering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PART 3: DRP ─── -->
+<section id="part3">
+  <div class="container">
+    <span class="section-eyebrow">Part Three · Core Innovation</span>
+    <div class="part-header">
+      <div class="part-number">III</div>
+      <div class="part-title-block">
+        <h2>The Dharmic Realism Protocol</h2>
+        <p class="part-subtitle">Four Interlocking Layers · Integrated Architecture</p>
+      </div>
+    </div>
+
+    <div class="prose fade-in">
+      <p>
+        The DRP integrates three source systems — DEIP (Demographic-Economic Integrity Protocol), H-COS 
+        (Sanatana Dharmic Policy Intelligence Platform), and the Sanatana Knowledge Ecosystem — into four 
+        mutually reinforcing operational layers. Each layer has its own metrics, actors, and implementation 
+        mechanisms. Together they form a <strong class="highlight">self-correcting civilizational system</strong>.
+      </p>
+    </div>
+
+    <div class="layer-stack fade-in">
+      <div class="layer">
+        <div class="layer-num">01</div>
+        <div>
+          <div class="layer-name">Demographic-Economic Integrity Layer (DEIP 2.0)</div>
+          <div class="layer-desc">Citizenship-verified resource access tiers · AI anomaly detection for cluster migration spikes · Constitutional anti-vote-bank firewalls · Symbiotic formal-informal economic integration with graduation paths · National-scale urban commons governance</div>
+        </div>
+        <div class="layer-tag">DEIP</div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">02</div>
+        <div>
+          <div class="layer-name">Shatrubodh & Consciousness Layer</div>
+          <div class="layer-desc">Mandatory civilizational education modules (honest invasion history) · Comparative ideology awareness without hatred — game theory outcomes focus · Psychological training: pride + realism · Sunday Dharma Schools / apps · Shivaji, Guru Gobind Singh, Vijayanagara mass narratives</div>
+        </div>
+        <div class="layer-tag">AWARENESS</div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">03</div>
+        <div>
+          <div class="layer-name">Policy Intelligence & Governance Layer (H-COS + VAFGPE)</div>
+          <div class="layer-desc">Dharmic Performance Incentive System (DPIS) for politicians & bureaucrats · Real-time Friction Index (policy leakage, demographic distortion, cultural erosion) · Rights Dashboard for citizen accountability tools · Satya-Dharma-Ṛta governance ethics framework integration</div>
+        </div>
+        <div class="layer-tag">H-COS</div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">04</div>
+        <div>
+          <div class="layer-name">Knowledge Ecosystem Layer</div>
+          <div class="layer-desc">Living libraries + AI Dharma Sahayak for real-time rebuttals · Annual Civilizational Health Index (CHI) publication · Vendor density mapping, temple continuity tracking, fertility balance monitoring, cultural output metrics · Decolonial synthesis research network</div>
+        </div>
+        <div class="layer-tag">SKE</div>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <h3 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:1.5rem;font-size:1.2rem;letter-spacing:0.05em;margin-top:2rem;">Novel DRP Mechanisms (Missing from Existing Frameworks)</h3>
+
+    <div class="card-grid fade-in">
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <h3>AI Dharma Sahayak Engine</h3>
+        <p>LLM-powered rebuttal system trained on Vedic primary sources, historical records, and comparative theology. Real-time counter-narrative generation for social media. Vedic timestamp verification for heritage claims. Multi-lingual deployment across 22 scheduled languages.</p>
+      </div>
+      <div class="card saffron">
+        <span class="card-icon">⛓️</span>
+        <h3>Blockchain Temple Registry</h3>
+        <p>Immutable on-chain records of temple land ownership, encroachment history, revenue flows. Tamper-proof audit trail for Waqf-equivalent Hindu institution protections. Smart contract-based endowment management ensuring funds reach intended communities.</p>
+      </div>
+      <div class="card jade">
+        <span class="card-icon">🗺️</span>
+        <h3>Demographic Friction Mapping</h3>
+        <p>GIS-layer real-time visualization of fertility differentials by district, illegal immigration pressure points, conversion cluster locations, electoral consolidation patterns. Public transparency tool — not surveillance, but civilizational situational awareness.</p>
+      </div>
+      <div class="card sky">
+        <span class="card-icon">⚡</span>
+        <h3>Dharmic Performance Index (DPI)</h3>
+        <p>Scoring system for elected representatives on: UCC progress, population policy, temple autonomy, border security, honest education reform. Quarterly published scorecards. Distributed to 50M+ voters via WhatsApp clusters before each election cycle.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌱</span>
+        <h3>Hindu Economic Cluster Protocol</h3>
+        <p>Informal akhanada bazaar nodes → formal cooperative clusters. Preferential linkage within Hindu entrepreneur networks (not exclusionary — parallel to existing Islamic hawala/cooperative systems). Technology layer: UPI-integrated loyalty, GST compliance graduation pathways.</p>
+      </div>
+      <div class="card crimson">
+        <span class="card-icon">⚖️</span>
+        <h3>Civilizational Legal Defense Network</h3>
+        <p>Bar association equivalent for Hindu legal defense. Crowdfunded rapid-response team for blasphemy/temple cases. Constitutional challenges to Article 30 asymmetry. Documentation of violence-non-reportage pattern with international human rights submissions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PART 4: ROADMAP ─── -->
+<section id="part4">
+  <div class="container">
+    <span class="section-eyebrow">Part Four</span>
+    <div class="part-header">
+      <div class="part-number">IV</div>
+      <div class="part-title-block">
+        <h2>Implementation Roadmap</h2>
+        <p class="part-subtitle">Three Phases · Institutional Architecture · Global Export Model</p>
+      </div>
+    </div>
+
+    <div class="timeline fade-in">
+      <div class="timeline-item">
+        <div class="timeline-phase">Phase 01 · 2025–2029 · Short Term</div>
+        <div class="timeline-title">Foundation & Pilot</div>
+        <div class="timeline-body">
+          Pilot DEIP in high-pressure states: West Bengal, UP, Assam, Delhi NCR. Push legislative agenda: UCC passage, population equity policy, Education Reform Act for honest historiography. Launch AI Dharma Sahayak beta. Establish 500 temple-community hub nodes. Blockchain registry for 10,000 disputed temple properties. Sunday Dharma School app reaching 1M users.
+        </div>
+      </div>
+
+      <div class="timeline-item saffron">
+        <div class="timeline-phase">Phase 02 · 2029–2035 · Medium Term</div>
+        <div class="timeline-title">Parallel Institution Building</div>
+        <div class="timeline-body">
+          Temples as community economic hubs: micro-finance, skill training, cultural preservation. Hindu Legal Defense Network at Supreme Court level. Electoral consolidation protocols distributed to 200M Hindu voters. Civilizational Health Index published annually, cited in mainstream discourse. H-COS governance pilots in 5 BJP-led states integrated with existing smart city infrastructure.
+        </div>
+      </div>
+
+      <div class="timeline-item jade">
+        <div class="timeline-phase">Phase 03 · 2035–2047 · Long Term</div>
+        <div class="timeline-title">National OS Rollout & Global Export</div>
+        <div class="timeline-body">
+          National H-COS rollout integrated with Smart Cities Mission, PM SVANidhi, PMGSY. Dharmic governance model exported to Global South as alternative to both Western liberalism and Islamic governance. India as Vishwaguru — not rhetorical aspiration but technical reality. By 2047 centennial: demographic balance stabilized, temple economy rivaling Waqf assets, civilizational identity measurably strengthened.
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <h3 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:1.5rem;font-size:1.2rem;letter-spacing:0.05em;">Parallel Institution Architecture</h3>
+
+    <div class="two-col fade-in">
+      <div>
+        <ul class="checklist">
+          <li>Temple networks as community economic anchors with micro-lending, skill labs, cultural archives</li>
+          <li>Akharas modernized as physical-mental resilience centers (martial + yogic + civic)</li>
+          <li>Dharmic media house: vernacular OTT + news + educational content pipeline</li>
+          <li>Hindu entrepreneurship incubator clusters in 50 tier-2 cities</li>
+          <li>Vedic Knowledge University network with international accreditation</li>
+          <li>Annual Civilizational Remembrance days — documented, not dramatized</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="checklist saffron">
+          <li>Legal defense fund with ₹500 crore corpus for temple and civil rights cases</li>
+          <li>Diplomatic track: Kashmiri Pandit issue at UNHRC; global Hindu diaspora coordination</li>
+          <li>Counter-conversion documentation center with state-level data</li>
+          <li>STEM + Vedic synthesis research — ancient mathematics formalized for modern CS</li>
+          <li>Electoral analytics cell: real-time consolidation intelligence for 543 constituencies</li>
+          <li>Global South Dharmic Governance Export: Nepal, Mauritius, Bali, Suriname pilots</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PART 5: GAME THEORY ─── -->
+<section id="part5">
+  <div class="container">
+    <span class="section-eyebrow">Part Five</span>
+    <div class="part-header">
+      <div class="part-number">V</div>
+      <div class="part-title-block">
+        <h2>Game Theory & Civilizational Incentives</h2>
+        <p class="part-subtitle">Strategic Matrix · Dominant Strategy · Nash Equilibrium of Dharma</p>
+      </div>
+    </div>
+
+    <div class="prose fade-in">
+      <p>
+        The Dharmic Realism Protocol frames civilizational survival as a multi-player, multi-generational 
+        strategic game. The goal is not to "win" against other communities — it is to make <strong class="highlight">
+        civilizational self-preservation the dominant strategy</strong> for enough players that the equilibrium 
+        shifts toward long-term Dharmic flourishing. This is game theory, not hatred.
+      </p>
+    </div>
+
+    <div class="gt-matrix fade-in">
+      <div class="gt-cell gt-header"></div>
+      <div class="gt-cell gt-header">Adversarial Actor: Consolidates</div>
+      <div class="gt-cell gt-header">Adversarial Actor: Fragments / Moderates</div>
+
+      <div class="gt-cell gt-row-label">Hindu: Fragments (Current)</div>
+      <div class="gt-cell">
+        <div class="gt-outcome outcome-bad">Civilizational Retreat</div>
+        <div class="gt-value">Demographic erosion · institutional capture · memory loss</div>
+      </div>
+      <div class="gt-cell">
+        <div class="gt-outcome outcome-ok">Temporary Stability</div>
+        <div class="gt-value">Status quo maintained with slow drift unfavorable</div>
+      </div>
+
+      <div class="gt-cell gt-row-label">Hindu: Consolidates on Issues (DRP)</div>
+      <div class="gt-cell">
+        <div class="gt-outcome outcome-good">Balanced Deterrence</div>
+        <div class="gt-value">Mutual recognition of civilizational stakes · negotiation possible</div>
+      </div>
+      <div class="gt-cell">
+        <div class="gt-outcome outcome-best">Dharmic Flourishing</div>
+        <div class="gt-value">Genuine pluralism from strength · Ṛta equilibrium · optimal</div>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <div class="card-grid fade-in">
+      <div class="card jade">
+        <span class="card-icon">♟️</span>
+        <h3>Mandala Theory Applied</h3>
+        <p>Arthashastra's concentric alliance framework: immediate neighbors as potential adversaries, neighbors-of-neighbors as natural allies. Applied to modern India: strategic partnerships with Israel, Japan, Vietnam, Armenia — civilizations facing similar existential pressures from the same global ideological currents.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📈</span>
+        <h3>Long-Game Incentive Alignment</h3>
+        <p>Politicians rewarded on 25-year metrics (demographic balance, temple continuity, economic cohesion) not 5-year electoral cycles. DPIS creates career incentives for civilizational stewardship. Hindu voter blocs trained to punish demographic distortion regardless of development messaging.</p>
+      </div>
+      <div class="card saffron">
+        <span class="card-icon">🔗</span>
+        <h3>Tipping Point Mathematics</h3>
+        <p>30% electoral consolidation in fragmented Hindu vote (from current ~45–55% effective) would shift 200+ constituency outcomes. Mathematical modeling shows: 15% improvement in Hindu voting unity + 10% improvement in issue-priority ordering = decisive civilizational inflection point by 2034.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CIVILIZATIONAL HEALTH INDEX ─── -->
+<section id="chi">
+  <div class="container">
+    <span class="section-eyebrow">Annual Metric · Novel Framework</span>
+    <div class="part-header">
+      <div class="part-number">◈</div>
+      <div class="part-title-block">
+        <h2>Civilizational Health Index</h2>
+        <p class="part-subtitle">Real-Time Dashboard · Annual Report · Public Accountability</p>
+      </div>
+    </div>
+
+    <div class="prose fade-in">
+      <p>
+        The CHI is the DRP's diagnostic instrument — an annually published composite index measuring the 
+        health of Sanatana civilization across seven dimensions. Not sentiment: measurable data. Published 
+        openly, cited in Parliament, distributed to 100M citizens via app.
+      </p>
+    </div>
+
+    <div class="dashboard-mockup fade-in">
+      <div class="dashboard-header">
+        <div class="dashboard-dot dot-red"></div>
+        <div class="dashboard-dot dot-yellow"></div>
+        <div class="dashboard-dot dot-green"></div>
+        <div class="dashboard-title">CHI DASHBOARD v1.0 · CIVILIZATIONAL HEALTH INDEX · BHARAT</div>
+      </div>
+      <div class="dashboard-body">
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Temple Continuity</span><span style="color:var(--gold)">72%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:72%;background:linear-gradient(to right,var(--gold-dim),var(--gold));"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Fertility Balance</span><span style="color:var(--saffron)">54%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:54%;background:linear-gradient(to right,var(--saffron-dim),var(--saffron));"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Cultural Output</span><span style="color:var(--jade-bright)">81%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:81%;background:linear-gradient(to right,var(--jade),var(--jade-bright));"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Electoral Cohesion</span><span style="color:var(--saffron)">48%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:48%;background:linear-gradient(to right,var(--saffron-dim),var(--saffron));"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Economic Sovereignty</span><span style="color:var(--sky-bright)">63%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:63%;background:linear-gradient(to right,var(--sky),var(--sky-bright));"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Hist. Consciousness</span><span style="color:var(--saffron)">41%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:41%;background:linear-gradient(to right,var(--saffron-dim),var(--saffron));"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Legal Parity</span><span style="color:#e74c3c">38%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:38%;background:linear-gradient(to right,var(--crimson),#e74c3c);"></div></div>
+        </div>
+        <div class="chi-metric">
+          <div class="chi-bar-label"><span>Overall CHI Score</span><span style="color:var(--gold)">57%</span></div>
+          <div class="chi-bar-track"><div class="chi-bar-fill" style="width:57%;background:linear-gradient(to right,var(--gold-dim),var(--gold-bright));"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metric-grid fade-in" style="margin-top:2rem;">
+      <div class="metric-card">
+        <span class="metric-value">7</span>
+        <span class="metric-label">CHI Dimensions Tracked</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">543</span>
+        <span class="metric-label">Constituencies Mapped</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">800+</span>
+        <span class="metric-label">Years of Data Synthesized</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">22</span>
+        <span class="metric-label">Languages · AI Deployment</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">2047</span>
+        <span class="metric-label">Centennial Target Year</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHECKLIST ─── -->
+<section id="checklist">
+  <div class="container">
+    <span class="section-eyebrow">Practical Action Framework</span>
+    <div class="part-header">
+      <div class="part-number">✓</div>
+      <div class="part-title-block">
+        <h2>Dharmic Action Checklists</h2>
+        <p class="part-subtitle">Individual · Community · Policymaker · Thinker</p>
+      </div>
+    </div>
+
+    <div class="two-col fade-in">
+      <div>
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:1rem;font-size:1rem;letter-spacing:0.08em;">🧍 For the Individual Hindu</h3>
+        <ul class="checklist">
+          <li>Know your history: Read Sita Ram Goel, Koenraad Elst, R.C. Majumdar — at minimum one primary source on medieval India</li>
+          <li>Understand game theory of tolerance: Extend it from strength, not from fear or reflexive niceness</li>
+          <li>Vote on civilizational issues: UCC, population policy, temple autonomy, border integrity — not caste or freebies</li>
+          <li>Support Hindu economic ecosystem: Patronize Hindu businesses, temples, cultural institutions</li>
+          <li>Teach your children Dharmic Realism: Pride in achievements + realism about documented threats</li>
+          <li>Maintain physical-mental readiness: Akharas, yoga, martial arts — embodied civilization</li>
+          <li>Participate in Sunday Dharma education for children</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Cinzel',serif;color:var(--saffron);margin-bottom:1rem;font-size:1rem;letter-spacing:0.08em;">🏘️ For Communities</h3>
+        <ul class="checklist saffron">
+          <li>Establish temple-community hub: Economic activity, skill development, cultural archive, legal aid</li>
+          <li>Map your local demographic pressure points annually using CHI district data</li>
+          <li>Build legal defense fund: ₹1000/family/year to collective pool</li>
+          <li>Create civilizational memory events: Annual remembrance without exaggeration, with documentation</li>
+          <li>Run comparative religion education — objective, not hateful, but honest about doctrinal differences</li>
+          <li>Establish informal economic cluster: Preferential support within community, compliance with law</li>
+          <li>Document and report: Every instance of communal violence, encroachment, conversion pressure — to proper authorities AND public record</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ◈ ✦</div>
+
+    <div class="two-col fade-in">
+      <div>
+        <h3 style="font-family:'Cinzel',serif;color:var(--jade-bright);margin-bottom:1rem;font-size:1rem;letter-spacing:0.08em;">🏛️ For Policymakers</h3>
+        <ul class="checklist jade">
+          <li>Push UCC: Non-negotiable civilizational equity — one law for all citizens regardless of religion</li>
+          <li>Introduce population equity policy: Incentive-based, not coercive — link welfare to family planning compliance uniformly</li>
+          <li>Education reform: Primary source-based history in NCERT from Class 6 onward</li>
+          <li>Temple autonomy legislation: Free temples from state control while maintaining accountability</li>
+          <li>Anti-infiltration law: Biometric-linked citizenship verification in border districts</li>
+          <li>Electoral roll audit: AI-assisted anomaly detection for sudden voter registration spikes</li>
+          <li>Constitutional review: Article 30 asymmetry, Waqf Act revision for parity</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Cinzel',serif;color:var(--sky-bright);margin-bottom:1rem;font-size:1rem;letter-spacing:0.08em;">🔬 For Thinkers & Researchers</h3>
+        <ul class="checklist" style="--check-color:var(--sky-bright)">
+          <li>Formalize Vedic mathematics for modern cryptography and computer science applications</li>
+          <li>Develop comparative civilizational risk framework: What metrics predict civilizational decline?</li>
+          <li>Build AI training corpus from Sanskrit, Pali, Tamil primary sources — counter the Western-biased LLM problem</li>
+          <li>Publish annually in international journals: Demographic data, temple destruction archaeology, conversion statistics</li>
+          <li>Create Dharmic governance theory: Arthashastra + game theory + complexity science synthesis</li>
+          <li>Build decolonial epistemology: Not anti-Western, but post-Western — Vedic knowledge systems as equal epistemic tradition</li>
+          <li>Document the Hindu Holocaust: Comparable academic rigor to other documented historical atrocities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NOVEL INSIGHTS SECTION ─── -->
+<section style="background:linear-gradient(180deg,transparent,rgba(201,162,39,0.03),transparent);">
+  <div class="container">
+    <span class="section-eyebrow">Novel Synthesis · Missing from Existing Literature</span>
+    <div class="part-header">
+      <div class="part-number">✦</div>
+      <div class="part-title-block">
+        <h2>Breakthrough Insights</h2>
+        <p class="part-subtitle">Unique Contributions of the Dharmic Realism Protocol</p>
+      </div>
+    </div>
+
+    <div class="card-grid fade-in">
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <h3>Complexity Science Meets Dharma</h3>
+        <p>Civilizations are complex adaptive systems. Small perturbations (demographic shifts, narrative changes) cascade into phase transitions. CAS modeling of Hindu demographic trajectory shows critical tipping points in 7 border districts within 15 years — demanding non-linear policy responses, not linear corrections.</p>
+      </div>
+      <div class="card saffron">
+        <span class="card-icon">🧩</span>
+        <h3>The Distributed Resilience Advantage</h3>
+        <p>Sanatana's apparent weakness — no single text, no single Pope, no single creed — is actually its greatest evolutionary strength. Distributed systems are attack-resistant. The DRP codifies this: not centralized Hindu Church but federated civilizational network — like Internet architecture vs. hierarchical systems.</p>
+      </div>
+      <div class="card jade">
+        <span class="card-icon">🌊</span>
+        <h3>Soft Power Inversion Strategy</h3>
+        <p>India exports yoga, Ayurveda, Vedanta, meditation — but does not brand it as Sanatana civilization. The West consumes Hindu wisdom stripped of Hindu identity. DRP reclaims the IP: certify, brand, track — Yoga Alliance must acknowledge Hindu roots, Ayurveda patents must remain in Indian control.</p>
+      </div>
+      <div class="card sky">
+        <span class="card-icon">💎</span>
+        <h3>The Advaita Governance Paradox</h3>
+        <p>Advaita's "all is one" is not governance naivety — it is the ultimate strategic frame. If all is Brahman, then the protection of Dharma IS the protection of all. This resolves the apparent contradiction: Kshatriya realism is itself an expression of the highest spiritual truth, not its negation.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔮</span>
+        <h3>Epigenetic Memory Model</h3>
+        <p>Cultural transmission is partly epigenetic — trauma and triumph encoded in practice, ritual, embodied memory. Hindu resilience through 800 years of pressure was maintained through temple ritual, festival cycles, oral tradition, martial lineages. DRP preserves and amplifies these biological-cultural transmission pathways.</p>
+      </div>
+      <div class="card crimson">
+        <span class="card-icon">⚡</span>
+        <h3>The Strength-Tolerance Theorem</h3>
+        <p>Formal proof: Tolerance extended from a position of weakness signals victim-status and invites predation (evolutionary game theory: dove vs. hawk vs. retaliator). Optimal civilizational strategy is "retaliator" — tolerant by default, but with certain, proportionate, memorable response to aggression. India has been "dove." DRP transitions to "retaliator."</p>
+      </div>
+    </div>
+
+    <div class="quote-block fade-in" style="border-left-color:var(--saffron);">
+      <p>"The measure of civilizational health is not the absence of enemies but the quality of response to them. A civilization that cannot name its threats cannot defend against them. A civilization that names its threats with hatred rather than clarity destroys itself from within. Dharmic Realism is the third way: clear-eyed, data-grounded, strength-rooted, and finally — optimistic."</p>
+      <span class="quote-source">— Dharmic Realism Protocol · Synthesis Statement</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOURCE NETWORK ─── -->
+<section class="ecosystem-section" id="sources">
+  <div class="container">
+    <span class="section-eyebrow">Source Architecture · Living Research Network</span>
+    <div class="part-header">
+      <div class="part-number">◉</div>
+      <div class="part-title-block">
+        <h2>The Sanatana Research Ecosystem</h2>
+        <p class="part-subtitle">Seven Interconnected Platforms · Explore the Full Network</p>
+      </div>
+    </div>
+
+    <div class="prose fade-in">
+      <p>
+        The Dharmic Realism Protocol synthesizes across seven living research platforms — each addressing a
+        distinct layer of the civilizational challenge. Together they form a distributed, open-access knowledge
+        architecture. Explore each node below.
+      </p>
+    </div>
+
+    <div class="eco-grid fade-in" style="margin-top:2.5rem;">
+
+      <a class="eco-btn accent-gold" href="https://helixoriginator.github.io/sanatana-ecosystem/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x2B21;</span>
+        <span class="eco-text">
+          <span class="eco-label">Sanatana Ecosystem</span>
+          <span class="eco-desc">civilizational OS &middot; integrated framework</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+      <a class="eco-btn accent-sky" href="https://helixoriginator.github.io/Sanatana-Knowledge-Bank-/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x1F4DA;</span>
+        <span class="eco-text">
+          <span class="eco-label">Sanatana Knowledge Bank</span>
+          <span class="eco-desc">dharma defense &middot; historical rebuttals &middot; decolonial synthesis</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+      <a class="eco-btn accent-jade" href="https://helixoriginator.github.io/sanatana-civilization-stack/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x1F3DB;</span>
+        <span class="eco-text">
+          <span class="eco-label">Sanatana Civilization Stack</span>
+          <span class="eco-desc">layered architecture &middot; governance &middot; culture &middot; technology</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+      <a class="eco-btn accent-saffron" href="https://helixoriginator.github.io/Sanatana-Dharmic-Policy-Intelligence-Platform/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x2699;</span>
+        <span class="eco-text">
+          <span class="eco-label">Dharmic Policy Intelligence</span>
+          <span class="eco-desc">H-COS &middot; VAFGPE &middot; Satya-Dharma-Rta governance engine</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+      <a class="eco-btn accent-crimson" href="https://helixoriginator.github.io/demographic-economic-integrity-protocol/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x1F4CA;</span>
+        <span class="eco-text">
+          <span class="eco-label">DEIP Protocol</span>
+          <span class="eco-desc">demographic-economic integrity &middot; anti-distortion &middot; urban commons</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+      <a class="eco-btn accent-violet" href="https://helixoriginator.github.io/asymmetrical-democratic-equilibrium/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x2696;</span>
+        <span class="eco-text">
+          <span class="eco-label">Asymmetrical Democratic Equilibrium</span>
+          <span class="eco-desc">game theory &middot; electoral asymmetry &middot; strategic voting analysis</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+      <a class="eco-btn accent-teal" href="https://sanatana-intelligence.netlify.app/" target="_blank" rel="noopener">
+        <span class="eco-icon">&#x1F916;</span>
+        <span class="eco-text">
+          <span class="eco-label">Sanatana Intelligence</span>
+          <span class="eco-desc">AI-powered dharmic synthesis &middot; live research platform</span>
+        </span>
+        <span class="eco-arrow">&#x2197;</span>
+      </a>
+
+    </div>
+
+    <div class="ornament" style="margin-top:3rem;">&#x2726; &#x25C8; &#x2726;</div>
+
+    <div style="text-align:center;margin-top:1.5rem;" class="fade-in">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase;">
+        All platforms created by Kallol Chakrabarti &middot; Global Independent Researcher &middot; Open Access
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-om">ॐ</div>
+    <div class="footer-title">DHARMIC REALISM PROTOCOL</div>
+    <div class="footer-tagline">
+      Sanatana Civilizational OS · Demographic Integrity · Policy Intelligence · Knowledge Ecosystem
+    </div>
+    <div style="height:1px;background:linear-gradient(to right,transparent,var(--border-gold),transparent);margin:1.5rem 0;"></div>
+    <div class="footer-author">KALLOL CHAKRABARTI</div>
+    <div class="footer-role">Global Independent Researcher</div>
+    <div style="margin-top:2rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-muted);letter-spacing:0.15em;">
+      Integrating DEIP · H-COS · Sanatana Knowledge Ecosystem · Dharmic Realism Framework
+    </div>
+    <div style="margin-top:0.5rem;font-size:0.78rem;font-style:italic;color:var(--text-muted);opacity:0.6;">
+      सत्यं ब्रूयात् प्रियं ब्रूयात् न ब्रूयात् सत्यमप्रियम् — Speak truth, speak pleasantly, but speak not unpleasant truth in the wrong moment
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Animate CHI bars on scroll
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.chi-bar-fill');
+        fills.forEach(fill => {
+          const width = fill.style.width;
+          fill.style.width = '0%';
+          setTimeout(() => { fill.style.width = width; }, 100);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const dashboard = document.querySelector('.dashboard-mockup');
+  if (dashboard) barObserver.observe(dashboard);
+</script>
+</body>
+</html>
